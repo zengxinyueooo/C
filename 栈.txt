@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<malloc.h>
+typedef struct stacknode
+{
+	int data;
+	struct stacknode* next;
+}stack;
+//初始化 
+stack* init()
+{
+	stack* s=(stack*)malloc(sizeof(stack));
+	s=NULL;
+	return s;
+}
+int empty(stack *s)
+{
+	if(s==NULL)
+	  return 1;
+	else return 0;
+}
+void push(stack* s,int x)
+{
+	stack* p=(stack*)malloc(sizeof(stack));
+	p->data=x;
+	p->next=s;//类似尾插 
+	s=p;
+}
+void pop(stack* s,int x)
+{
+	stack* p=(stack*)malloc(sizeof(stack));
+	x=s->data;
+	p=s;
+	s=s->next;
+	free(p);
+}
+void print(stack* s)
+{
+	stack* p=(stack*)malloc(sizeof(stack));
+	p=s;
+	while(p)
+	{
+		printf("%d ",p->data );
+		p=p->next;
+	}
+}
+int main()
+{
+	stack* s=init();
+	int x,y;
+	scanf("%d",&x);
+	push(s,x);
+	print(s);
+	scanf("%d",&y);
+	push(s,y);
+	pop(s,x);
+	print(s);
+	return 0;
+}
